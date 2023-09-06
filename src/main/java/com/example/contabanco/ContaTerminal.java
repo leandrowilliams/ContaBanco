@@ -26,7 +26,7 @@ public class ContaTerminal {
                 saldo = Double.parseDouble(saldoInput.replace(",", "."));
                 break;
             } else {
-                System.out.println("Altura inválida. Tente novamente.");
+                System.out.println("Saldo errado, por favor colocar '.' ou ',' tente novamente.");
             }
         }
 
