@@ -2,21 +2,28 @@ package com.example.contabanco;
 
 import java.util.Locale;
 import java.util.Scanner;
+
 public class ContaTerminal {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
 
         System.out.println("Por favor, digite o nome do Cliente: ");
-        String nomeCliente = scanner.next();
+        String nomeCliente = scanner.nextLine();
 
-        System.out.println("Por favor, digite o número da Agência: ");
-        String agencia = scanner.next();
+        String agencia;
+        while (true) {
+            System.out.println("Por favor, digite o número da Agência (formato 000-0): ");
+            agencia = scanner.next();
+            if (agencia.matches("\\d{3}-\\d")) {
+                break;
+            } else {
+                System.out.println("Agência incorreta, por favor, digite no formato 000-0. Tente novamente.");
+            }
+        }
 
         System.out.println("Por favor, digite o número da Conta: ");
         int numero = scanner.nextInt();
 
-        // Pedindo a altura até que uma entrada válida seja fornecida
         double saldo;
         String saldoInput;
         while (true) {
@@ -26,10 +33,10 @@ public class ContaTerminal {
                 saldo = Double.parseDouble(saldoInput.replace(",", "."));
                 break;
             } else {
-                System.out.println("Saldo errado, por favor colocar '.' ou ',' tente novamente.");
+                System.out.println("Saldo incorreto, por favor, utilize '.' ou ',' e tente novamente.");
             }
         }
 
-        System.out.println("Olá " + nomeCliente + ", obrigado por criar uma conta em nosso banco, sua agência é " + agencia + ", conta " + numero + " e seu saldo " + saldo + " já está disponível para saque");
+        System.out.println("Olá " + nomeCliente + ", obrigado por criar uma conta em nosso banco, sua agência é " + agencia + ", conta " + numero + " e seu saldo " + saldo + " já está disponível para saque.");
     }
 }
