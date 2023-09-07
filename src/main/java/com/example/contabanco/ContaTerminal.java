@@ -10,16 +10,18 @@ public class ContaTerminal {
         System.out.println("Por favor, digite o nome do Cliente: ");
         String nomeCliente = scanner.nextLine();
 
-        String agencia;
+        String agenciaInput;
         while (true) {
-            System.out.println("Por favor, digite o número da Agência (formato 000-0): ");
-            agencia = scanner.next();
-            if (agencia.matches("\\d{3}-\\d")) {
+            System.out.println("Por favor, digite o número da Agência: ");
+            agenciaInput = scanner.next();
+            if (agenciaInput.matches("\\d{3}-\\d") || agenciaInput.matches("\\d{4}")) {
                 break;
             } else {
-                System.out.println("Agência incorreta, por favor, digite no formato 000-0. Tente novamente.");
+                System.out.println("Agência incorreta, por favor, digite no formato 067-8 ou 0678. Tente novamente.");
             }
         }
+
+        String agencia = agenciaInput.length() == 4 ? agenciaInput.substring(0, 3) + "-" + agenciaInput.substring(3) : agenciaInput;
 
         System.out.println("Por favor, digite o número da Conta: ");
         int numero = scanner.nextInt();
